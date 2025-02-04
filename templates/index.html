@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+ {% load static %}
+  {% block title %} home {% endblock %} 
+  {% block content %}
+
+<div class="card-parent">
+  {% for i in page_obj %}
+
+  <div class="card-container">
+    <div class="card-header">
+      {% if i.created_by == request.user %}
+      <div class="edit">
+        <a class="edit-style" href="{% url 'edit' i.id  %}">Edit</a>
+      </div>
+      {% endif %}
+
+      <em>my movie blog </em>
+
+      <b class="rating">{{i.rating}}</b>
+    </div>
+
+    <div class="card-title">
+      <h1 class="title-box">{{i.title|upper }}</h1>
+    </div>
+
+    <b>comment :</b>
+    <div class="card-comment">
+      <p class="comment-box">{{i.comment}}</p> 
+    </div>
+
+    <small>created at :{{i.date}}</small>
+
+    <p class="creator">Created by: {{ i.created_by.username|upper }}</p>
+
+    <div class="delete">
+      {% if i.created_by == request.user %}
+
+      <form method="post" action="{% url 'delete' i.id %}">
+        {% csrf_token %}
+        <button class="delete-style" type="submit">delete</button>
+      </form>
+
+      {% endif %}
+    </div>
+  </div>
+
+  {% endfor %}
+  
+
+</div>
+{% if page_obj.paginator.num_pages > 1  %}
+<div class="pag-container">
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1"> first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+    
+            <span class="current">
+          
+    
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </span>
+    
+            {% if page_obj.has_next %}
+        
+    
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last </a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock %}

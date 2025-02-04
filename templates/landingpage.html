@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Landing Page{% endblock %}
+
+{% block content %}
+<div class="landing-wrapper">
+    <div class="header-container">
+        <h1 class="header">
+            <span class="typed-text"></span><span class="cursor">&nbsp;</span>
+        </h1>
+    </div>
+    <div class="description">
+        <p>Welcome to our website where you can blog and rate movies that you love!</p>
+        <p>Join our community of movie enthusiasts and share your thoughts on the latest films.</p>
+        <p>Discover new movies, read reviews, and connect with other movie lovers.</p>
+        <p>Sign up now to start sharing your movie experiences and become a part of our growing community.</p>
+
+    </div>
+    <div class="auth-buttons">
+        <a href="{% url 'register' %}" class="btn-signup">Sign Up</a>
+        <a href="{% url 'login' %}" class="btn-login">Log In</a>
+    </div>
+</div>
+{% endblock %}

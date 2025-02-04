@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %} edit page {% endblock %}
+{% block content %}
+
+<div class="form-wrapper">
+    <form method="POST" class="form-content">
+        {% csrf_token %}
+        <h2 class="form-header">Create New Blog</h2>
+        <div class="form-group">
+            <label for="id_title">Title</label>
+            {{ form.title }}
+        </div>
+        <div class="form-group">
+            <label for="id_comment">Comment</label>
+            <div class="comment-container">
+                {{ form.comment }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="id_rating">Rating from 1-10:</label>
+            {{ form.rating }}
+            {% if form.rating.errors %}
+            <div class="error">{{ form.rating.errors }}</div>
+            {% endif %}
+
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn-submit">Submit</button>
+        </div>
+      
+    </form>
+</div>
+{% endblock  %}

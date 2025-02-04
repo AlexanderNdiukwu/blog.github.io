@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} profile {% endblock %}
+{% block content %}
+
+
+<div>
+    
+    <div class="profile-header">
+
+        <h1>profile info</h1>
+    </div>
+    <div class="profile-container">
+        <div class="image-holder">
+            <div class="image-frame">
+
+                <img class="image-itself" src="{{ user.profile.image.url }}" alt="">
+            </div>
+            <div class="image-bio">
+                <h4>bio:</h4>
+
+                <p >{{user.profile.bio}}</p>
+            </div>
+         
+        </div>
+
+        <div class="side-profile">
+            
+            <p>{{user.username}}</p>
+            <p>{{user.email}}</p>
+            <div class="code-edit">
+                <p  id="code">edit profile</p>
+
+            </div>
+
+
+            <div id="profile-display" class="profile-edit" >
+
+
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <div>
+                        {{upload}}
+                        {{uploadprofile }}
+                    </div>
+                    <button type="submit">update </button>
+        
+                </form>
+                
+            </div>
+            
+    
+            </div>
+
+
+
+        
+        
+    </div>
+</div>
+
+{% endblock  %}

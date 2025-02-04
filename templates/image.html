@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} image {% endblock %}
+{% block content %}
+
+<div>
+   <p>ret</p>
+   <p>{{user.username }} </p>
+   <p>{{user.image.image1.url }} </p>
+   <img src="{{ user.image.image1.url }}" alt="">
+
+   
+
+</div>
+{% endblock  %}
